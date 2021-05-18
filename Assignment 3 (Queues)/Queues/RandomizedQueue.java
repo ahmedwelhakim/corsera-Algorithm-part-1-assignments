@@ -1,4 +1,5 @@
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 
 public class RandomizedQueue<Item> implements Iterable<Item> {
     private Item[] items;
@@ -30,6 +31,9 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
 
     // add the item
     public void enqueue(Item item) {
+        if (item == null) {
+            throw new IllegalArgumentException();
+        }
         if (emptyIndices.isEmpty()) {
             if (size == items.length) resize(2 * items.length);
             if (last++ >= (items.length)) {
@@ -45,6 +49,10 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
 
     // remove and return a random item
     public Item dequeue() {
+        if (isEmpty()) {
+
+            throw new java.util.NoSuchElementException();
+        }
         int rand = StdRandom.uniform(size);
         while (items[rand] == null) {
             rand = StdRandom.uniform(items.length);
@@ -91,6 +99,9 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
             }
 
             public Item next() {
+                if (isEmpty()) {
+                    throw new NoSuchElementException();
+                }
                 return randItems[index++];
             }
 
