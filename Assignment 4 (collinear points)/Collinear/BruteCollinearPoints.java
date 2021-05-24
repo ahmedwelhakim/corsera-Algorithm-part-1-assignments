@@ -1,48 +1,33 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class BruteCollinearPoints {
-    private ArrayList<LineSegment> lineSegList;
+    private final ArrayList<LineSegment> lineSegList;
     private int segmentNo;
+    private final Point[] pts;
 
     // finds all line segments containing 4 points
     public BruteCollinearPoints(Point[] points) {
         if (points == null) throw new IllegalArgumentException("null argument");
-        checkNullPoints(points);
-        checkDuplicatedPoints(points);
+        else {
+            checkNullDuplicatePoints(points);
+            pts = Arrays.copyOf(points, points.length);
+            Arrays.sort(pts);
+            lineSegList = new ArrayList<LineSegment>();
+            for (int i = 0; i < pts.length; i++) {
+                for (int j = i + 1; j < pts.length; j++) {
+                    for (int k = j + 1; k < pts.length; k++) {
+                        for (int m = k + 1; m < pts.length; m++) {
+                            if (pts[i].slopeTo(pts[j]) ==
+                                    pts[i].slopeTo(pts[k]) &&
+                                    pts[i].slopeTo(pts[j]) ==
+                                            pts[i].slopeTo(pts[m])
+                            ) {
+                                segmentNo++;
 
-        lineSegList = new ArrayList<LineSegment>();
-        for (int i = 0; i < points.length; i++) {
-            for (int j = i + 1; j < points.length; j++) {
-                for (int k = j + 1; k < points.length; k++) {
-                    for (int m = k + 1; m < points.length; m++) {
-                        if (points[i].slopeTo(points[j]) ==
-                                points[i].slopeTo(points[k]) &&
-                                points[i].slopeTo(points[j]) ==
-                                        points[i].slopeTo(points[m])
-                        ) {
-                            segmentNo++;
-                            Point max = points[i];
-                            Point min = points[i];
-                            if (max.compareTo(points[j]) > 0) {
-                                max = points[j];
-                            }
-                            if (max.compareTo(points[k]) > 0) {
-                                max = points[k];
-                            }
-                            if (max.compareTo(points[m]) > 0) {
-                                max = points[m];
-                            }
-                            if (min.compareTo(points[j]) < 0) {
-                                min = points[j];
-                            }
-                            if (min.compareTo(points[k]) < 0) {
-                                min = points[k];
-                            }
-                            if (min.compareTo(points[m]) < 0) {
-                                min = points[m];
-                            }
 
-                            lineSegList.add(new LineSegment(max, min));
+                                lineSegList.add(new LineSegment(pts[i], pts[m]));
+                            }
                         }
                     }
                 }
@@ -64,24 +49,39 @@ public class BruteCollinearPoints {
         return segments;
     }
 
-    // check null points
-    private void checkNullPoints(Point[] p) {
-        for (int i = 0; i < p.length - 1; i++) {
-            if (p[i] == null) {
-                throw new java.lang.NullPointerException("point is null");
-            }
-        }
+
+    public static void main(String[] args) {
+/*
+        // read the n points from a file
+
+
+        Point p1 = new Point(1000, 2000);
+        Point p2 = null;
+
+
+        StdOut.println(new LineSegment(p1, p2));
+*/
 
     }
 
-    // check duplicate points
-    private void checkDuplicatedPoints(Point[] p) {
-        for (int i = 0; i < p.length - 1; i++) {
-            if (p[i].compareTo(p[i + 1]) == 0) {
-                throw new IllegalArgumentException("Duplicated points");
+    // check null points
+    private void checkNullDuplicatePoints(Point[] points) {
+        for (Point point : points)
+            if (point == null) throw new IllegalArgumentException("The input contains null points");
+        for (int i = 0; i < points.length; i++) {
+            for (int j = i + 1; j < points.length; j++) {
+                if (points[i].compareTo(points[j]) == 0) {
+                    throw new IllegalArgumentException("Duplicate point ");
+                }
             }
         }
     }
 
 }
+
+
+
+
+
+
 

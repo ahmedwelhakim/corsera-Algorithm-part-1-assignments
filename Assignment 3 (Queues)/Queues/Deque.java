@@ -1,3 +1,5 @@
+import edu.princeton.cs.algs4.StdOut;
+
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
@@ -138,9 +140,11 @@ public class Deque<Item> implements Iterable<Item> {
                 if (isEmpty()) {
                     throw new NoSuchElementException();
                 }
-                Item item = current.item;
-                current = current.next;
-                return item;
+                else {
+                    Item item = current.item;
+                    current = current.next;
+                    return item;
+                }
             }
 
             public void remove() {

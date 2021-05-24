@@ -9,7 +9,6 @@
  ******************************************************************************/
 
 import edu.princeton.cs.algs4.StdDraw;
-import edu.princeton.cs.algs4.StdOut;
 
 import java.util.Comparator;
 
@@ -62,13 +61,8 @@ public class Point implements Comparable<Point> {
      */
     public double slopeTo(Point that) {
         /* YOUR CODE HERE */
-        // Check horizontal line
-        if (that.y == this.y && this.x != that.y) {
-            return +0.0;
-        }
 
-        // Check vertical line
-        else if (that.x == this.x) {
+        if (that.x == this.x) {
             if (that.y == this.y) {
                 return Double.NEGATIVE_INFINITY;
             }
@@ -77,8 +71,11 @@ public class Point implements Comparable<Point> {
             }
 
         }
+        if (that.y == this.y) {
+            return +0.0;
+        }
         else {
-            return (double) (that.y - this.y) / (that.x - this.x);
+            return (double) (that.y - this.y) / (double) (that.x - this.x);
         }
     }
 
@@ -113,13 +110,26 @@ public class Point implements Comparable<Point> {
     public Comparator<Point> slopeOrder() {
         /* YOUR CODE HERE */
 
-        return new Comparator<Point>() {
-            public int compare(Point p1, Point p2) {
-                return Double.compare(slopeTo(p1), slopeTo(p2));
-            }
-        };
+        return new SlopeOrder(this);
+
     }
 
+    private static class SlopeOrder implements Comparator<Point> {
+        private final Point p;
+
+        public SlopeOrder(Point p) {
+            this.p = p;
+        }
+
+        public int compare(Point p1, Point p2) {
+            double slopeTo1 = this.p.slopeTo(p1);
+            double slopeTo2 = this.p.slopeTo(p2);
+
+            if (slopeTo1 > slopeTo2) return 1;
+            if (slopeTo1 < slopeTo2) return -1;
+            else return 0;
+        }
+    }
 
     /**
      * Returns a string representation of this point.
@@ -137,7 +147,7 @@ public class Point implements Comparable<Point> {
      * Unit tests the Point data type.
      */
     public static void main(String[] args) {
-        /* YOUR CODE HERE */
+        /* YOUR CODE HERE
         Point p1 = new Point(10000, 0);
         Point p2 = new Point(0, 10000);
         Point p3 = new Point(20000, 30000);
@@ -154,6 +164,6 @@ public class Point implements Comparable<Point> {
         StdDraw.show();
         Comparator<Point> c = p3.slopeOrder();
         StdOut.println(c.compare(p2, p1));
-
+*/
     }
 }
