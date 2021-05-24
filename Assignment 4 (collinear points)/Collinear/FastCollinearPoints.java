@@ -24,8 +24,9 @@ public class FastCollinearPoints {
 
             int count = 0;
             Point first = origin;
-            for (int j = 0; j < pointsSlopeSorted.length - 2; j++) {
+            for (int j = 1; j < pointsSlopeSorted.length - 2; j++) {
                 double slopeOfFirst = origin.slopeTo(pointsSlopeSorted[j]);
+
 
                 boolean areEqualSlope = origin.slopeTo(pointsSlopeSorted[j]) == origin
                         .slopeTo(pointsSlopeSorted[j + 1]);
@@ -41,20 +42,28 @@ public class FastCollinearPoints {
                 if (count == 1) {
                     first = pointsSlopeSorted[j];
                 }
-                if (((j + 2) == (pointsSlopeSorted.length - 1)) && areNextEqualSlope) {
+
+                //if j+1 last element
+                if ((j + 2) == (pointsSlopeSorted.length - 1) && areNextEqualSlope) {
                     count++;
-                }
+                    if (count >= 2) {
+                        if (origin.compareTo(first) <= 0) {
 
-                if (count >= 2) {
-                    if (origin.compareTo(first) <= 0) {
-                        if (slopeOfFirst == 0 || slopeOfFirst == Double.POSITIVE_INFINITY)
                             segList.add(new LineSegment(origin, pointsSlopeSorted[j + 2]));
-                        else
-                            segList.add(new LineSegment(origin, pointsSlopeSorted[j + 1]));
+
+                        }
+                        count = 0;
                     }
+                }
+                if (count >= 2 && !areNextEqualSlope) {
 
+                    if (origin.compareTo(first) <= 0) {
 
+                        segList.add(new LineSegment(origin, pointsSlopeSorted[j + 1]));
+
+                    }
                     count = 0;
+
                 }
 
             }
@@ -96,8 +105,7 @@ public class FastCollinearPoints {
         }
 
     }
-
- */
+*/
 
     // check duplicate or null points
     private void checkNullDuplicatePoints(Point[] points) {
