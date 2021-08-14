@@ -82,7 +82,7 @@ public class FastCollinearPoints {
         return Arrays.copyOf(segments, numberOfSegments());
     }
 
-/*
+
     public static void main(String[] args) {
 
         // read the n points from a file
@@ -105,7 +105,7 @@ public class FastCollinearPoints {
         }
 
     }
-*/
+
 
     // check duplicate or null points
     private void checkNullDuplicatePoints(Point[] points) {
