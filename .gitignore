@@ -1,0 +1,5 @@
+.lift
+.idea
+**/*.jar
+**/**/.lift
+**/**/.idea
