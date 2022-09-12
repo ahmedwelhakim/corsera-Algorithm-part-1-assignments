@@ -153,7 +153,7 @@ public class Solver {
             return o1.priority() - o2.priority();
         }
     }
-/*
+
     // test client (see below)
     public static void main(String[] args) {
         int[][] t = { { 0, 1, 3 }, { 4, 2, 5 }, { 7, 8, 6 } };
@@ -167,6 +167,6 @@ public class Solver {
                 StdOut.println(board);
         }
     }
-*/
+
 
 }
