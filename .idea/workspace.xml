@@ -5,23 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="097a4a5e-9db0-48a4-b8b3-4aa1654e59c1" name="Default Changelist" comment="Solving Assignment 6">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/algs4.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/checkstyle_lift.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assignment 1/Assignment 1.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assignment 2/Assignment 2.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assignment 6/Assignment 6.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assignment 6/src/KdTree.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assignment 6/src/PointSET.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Assignment1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/_lift.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/_lift1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/hello.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assignment 5 (slider puzzle)/Slider puzzle/.lift/checkstyle-lift.jar" beforeDir="false" afterPath="$PROJECT_DIR$/.lift/checkstyle-lift.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assignment 5 (slider puzzle)/Slider puzzle/Solver.java" beforeDir="false" afterPath="$PROJECT_DIR$/Assignment 5 (slider puzzle)/Slider puzzle/Solver.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment 6/src/KdTree.java" beforeDir="false" afterPath="$PROJECT_DIR$/Assignment 6/src/KdTree.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment 6/src/PointSET.java" beforeDir="false" afterPath="$PROJECT_DIR$/Assignment 6/src/PointSET.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -59,6 +45,9 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
   <component name="ProjectId" id="1sdgCCTFLvZybFVGasvELMvDdBR" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
@@ -78,10 +67,11 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "jdk.selected.JAVA_MODULE": "11",
-    "last_opened_file_path": "/home/ahmed/Documents/Courses/coursera-Algorithm-part-1-assignments/.lift/algs4.jar",
+    "last_opened_file_path": "/home/ahmed/Documents/Courses/Coursera-Algorithms-part-2-assignments/assignment 1",
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
+    "run.code.analysis.last.selected.profile": "pProject Default",
     "settings.editor.selected.configurable": "configurable.group.appearance"
   }
 }]]></component>
@@ -93,7 +83,7 @@
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.RangeSearchVisualizer">
+  <component name="RunManager" selected="Application.NearestNeighborVisualizer">
     <configuration name="KdTreeVisualizer" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="KdTreeVisualizer" />
       <module name="Assignment 6" />
@@ -157,9 +147,9 @@
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.NearestNeighborVisualizer" />
         <item itemvalue="Application.RangeSearchVisualizer" />
         <item itemvalue="Application.KdTreeVisualizer" />
-        <item itemvalue="Application.NearestNeighborVisualizer" />
       </list>
     </recent_temporary>
   </component>
@@ -171,6 +161,21 @@
       <option name="presentableId" value="Default" />
       <updated>1662951034046</updated>
     </task>
+    <task id="LOCAL-00001" summary="Solving Assignment 6">
+      <created>1663017721131</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1663017721131</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Solving Assignment 6">
+      <created>1663017854017</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1663017854017</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -187,17 +192,6 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Solving Assignment 6" />
     <option name="LAST_COMMIT_MESSAGE" value="Solving Assignment 6" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/Assignment 6/src/KdTree.java</url>
-          <line>116</line>
-          <option name="timeStamp" value="3" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

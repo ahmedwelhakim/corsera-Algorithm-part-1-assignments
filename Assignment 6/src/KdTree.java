@@ -1,13 +1,12 @@
 import edu.princeton.cs.algs4.Point2D;
 import edu.princeton.cs.algs4.RectHV;
 import edu.princeton.cs.algs4.StdDraw;
-import edu.princeton.cs.algs4.StdOut;
 
-import java.awt.*;
+
 import java.util.ArrayList;
 
 public class KdTree {
-    Tree tree;
+    private final Tree tree;
 
     // construct an empty set of points
     public KdTree() {
@@ -21,7 +20,7 @@ public class KdTree {
 
     // number of points in the set
     public int size() {
-        return  tree.size();
+        return tree.size();
     }
 
     // add the point to the set (if it is not already in the set)
@@ -51,13 +50,11 @@ public class KdTree {
     // a nearest neighbor in the set to point p; null if the set is empty
     public Point2D nearest(Point2D p) {
         if (p == null) throw new IllegalArgumentException();
-        if(tree.size()==0) {
+        if (tree.size() == 0) {
 
             return null;
         }
-        Point2D ans = tree.nearest(p);
-        StdOut.println(ans);
-        return  ans;
+        return tree.nearest(p);
     }
 
 
@@ -110,11 +107,11 @@ public class KdTree {
     }
 
     private static class Tree {
-        final private Node root = new Node(1);
+        private final Node root = new Node(1);
         private int size = 0;
 
         public void insert(Point2D p) {
-            if(this.contains(p)) return;
+            if (this.contains(p)) return;
             this.size++;
             if (root.getPoint() == null) {
                 root.setPoint(p);
@@ -136,7 +133,7 @@ public class KdTree {
 
         public boolean contains(Point2D p) {
             Node iter = root;
-            while (iter != null && iter.getPoint()!=null) {
+            while (iter != null && iter.getPoint() != null) {
                 if (iter.getPoint().equals(p)) return true;
                 if (lte(p, iter.getPoint(), iter.getDepth())) iter = iter.getLeft();
                 else iter = iter.getRight();
@@ -146,12 +143,12 @@ public class KdTree {
 
         public ArrayList<Point2D> range(RectHV rect) {
             ArrayList<Point2D> res = rangeHelper(root, rect);
-            if (res != null )return res;
+            if (res != null) return res;
             return new ArrayList<>();
         }
 
         private static ArrayList<Point2D> rangeHelper(Node root, RectHV rec) {
-            if (root == null) return null;
+            if (root == null || root.getPoint() == null) return null;
             ArrayList<Point2D> left = null, right = null, res = null;
             if (both(root, rec)) {
                 left = rangeHelper(root.getLeft(), rec);
@@ -168,7 +165,7 @@ public class KdTree {
             if (res != null) {
                 if (left != null) res.addAll(left);
                 if (right != null) res.addAll(right);
-                return right;
+                return res;
             }
             if (left != null) {
                 if (right != null) left.addAll(right);
@@ -200,12 +197,12 @@ public class KdTree {
             Node tmp = nearestNeighbor(nextNode, target);
             bestNode = closest(tmp, root, target);
             double radiusSquared = distanceSquared(bestNode.getPoint(), target);
-            double distSquared ;
-            if (root.getDepth() % 2 == 0)
+            double distSquared;
+            if (root.getDepth() % 2 == 1)
                 distSquared = Math.pow((target.x() - root.getPoint().x()), 2);
             else
                 distSquared = Math.pow((target.y() - root.getPoint().y()), 2);
-            if (radiusSquared >= distSquared) {
+            if (radiusSquared > distSquared) {
                 tmp = nearestNeighbor(otherNode, target);
                 bestNode = closest(tmp, bestNode, target);
             }
@@ -221,7 +218,7 @@ public class KdTree {
         }
 
         private static double distance(Point2D p1, Point2D p2) {
-            return Math.sqrt(Math.pow(p1.x() - p2.x(), 2) + Math.pow(p1.y() - p2.y(), 2));
+            return Math.pow(p1.x() - p2.x(), 2) + Math.pow(p1.y() - p2.y(), 2);
         }
 
         private static double distanceSquared(Point2D p1, Point2D p2) {
@@ -246,35 +243,35 @@ public class KdTree {
 
 
         private static boolean lte(Point2D p1, Point2D p2, double d) {
-            if(d % 2 == 1) return (p1.x() <= p2.x());
+            if (d % 2 == 1) return (p1.x() <= p2.x());
             return (p1.y() <= p2.y());
         }
 
 
-        public void draw(){
-            drawHelper(root,0,1,1,0);
+        public void draw() {
+            drawHelper(root, 0, 1, 1, 0);
         }
-        private static  void  drawHelper(Node root,double left , double right,double top, double bottom ){
-            if(root == null || root.getPoint() == null) return;
 
-            if(root.getDepth()%2==0){
+        private static void drawHelper(Node root, double left, double right, double top, double bottom) {
+            if (root == null || root.getPoint() == null) return;
+
+            if (root.getDepth() % 2 == 0) {
                 // Horizontal
-                StdDraw.setPenColor(Color.BLUE);
-                StdDraw.line(left,root.getPoint().y(),right,root.getPoint().y());
+                StdDraw.setPenColor(StdDraw.BLUE);
+                StdDraw.line(left, root.getPoint().y(), right, root.getPoint().y());
                 // Vertical
-                drawHelper(root.getRight(),left,right,top,root.getPoint().y());
-                drawHelper(root.getLeft(),left,right,root.getPoint().y(),bottom);
-            }
-            else {
+                drawHelper(root.getRight(), left, right, top, root.getPoint().y());
+                drawHelper(root.getLeft(), left, right, root.getPoint().y(), bottom);
+            } else {
                 // vertical
-                StdDraw.setPenColor(Color.RED);
-                StdDraw.line(root.getPoint().x(),top,root.getPoint().x(),bottom);
+                StdDraw.setPenColor(StdDraw.RED);
+                StdDraw.line(root.getPoint().x(), top, root.getPoint().x(), bottom);
                 // Horizontal
-                drawHelper(root.getLeft(),left,root.getPoint().x(),top,bottom);
-                drawHelper( root.getRight(),root.getPoint().x(),right,top,bottom);
+                drawHelper(root.getLeft(), left, root.getPoint().x(), top, bottom);
+                drawHelper(root.getRight(), root.getPoint().x(), right, top, bottom);
             }
-            StdDraw.setPenColor(Color.BLACK);
-            StdDraw.point(root.getPoint().x(),root.getPoint().y());
+            StdDraw.setPenColor(StdDraw.BLACK);
+            StdDraw.point(root.getPoint().x(), root.getPoint().y());
         }
     }
 }

@@ -1,9 +1,12 @@
-import edu.princeton.cs.algs4.*;
+import edu.princeton.cs.algs4.Point2D;
+import edu.princeton.cs.algs4.RectHV;
+import edu.princeton.cs.algs4.SET;
+import edu.princeton.cs.algs4.StdDraw;
 
 import java.util.ArrayList;
 
 public class PointSET {
-    SET<Point2D> points;
+    private final SET<Point2D> points;
 
     // construct an empty set of points
     public PointSET() {
@@ -23,8 +26,7 @@ public class PointSET {
     // add the point to the set (if it is not already in the set)
     public void insert(Point2D p) {
         if (p == null) throw new IllegalArgumentException();
-        if (!points.contains(p))
-            points.add(p);
+        if (!points.contains(p)) points.add(p);
     }
 
     // does the set contain point p?
@@ -44,9 +46,8 @@ public class PointSET {
     public Iterable<Point2D> range(RectHV rect) {
         if (rect == null) throw new IllegalArgumentException();
         ArrayList<Point2D> pointsInside = new ArrayList<>();
-        for(Point2D p : points){
-            if(rect.contains(p))
-                pointsInside.add(p);
+        for (Point2D p : points) {
+            if (rect.contains(p)) pointsInside.add(p);
         }
         return pointsInside;
     }
@@ -54,24 +55,22 @@ public class PointSET {
     // a nearest neighbor in the set to point p; null if the set is empty
     public Point2D nearest(Point2D p) {
         if (p == null) throw new IllegalArgumentException();
-        PointDistance nearest = new PointDistance(points.min(), distance(p, points.min()));
-        for(Point2D p1 : points){
-            final double dist = distance(p1,p);
-            if(dist<nearest.distance)
-                nearest = new PointDistance(p1, dist);
+        if (this.isEmpty()) return null;
+        double minDist = Double.POSITIVE_INFINITY;
+        Point2D minPoint = null;
+        for (Point2D p1 : points) {
+            final double dist = distance(p1, p);
+            if (dist < minDist) {
+                minDist = dist;
+                minPoint = p1;
+            }
         }
-        return nearest.point;
+        return minPoint;
     }
-    private double distance(Point2D p1, Point2D p2){
-        return Math.sqrt((p1.x()-p2.x())*(p1.x()-p2.x()) + (p1.y()-p2.y())*(p1.y()-p2.y()));
+
+    private double distance(Point2D p1, Point2D p2) {
+        return (p1.x() - p2.x()) * (p1.x() - p2.x()) + (p1.y() - p2.y()) * (p1.y() - p2.y());
     }
-    private static class PointDistance{
-        public Point2D point;
-        public double distance;
-        PointDistance(Point2D p, double distance){
-            this.point = p;
-            this.distance = distance;
-        }
-    }
+
 
 }
